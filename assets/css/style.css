@@ -1,16 +1,8 @@
-/**
-* Template Name: iPortfolio
-* Updated: May 30 2023 with Bootstrap v5.3.0
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #272829;
 }
 
@@ -30,7 +22,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -411,7 +403,7 @@ section {
 .facts .count-box p {
   padding: 15px 0 0 0;
   margin: 0 0 0 60px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   color: #122f57;
 }
@@ -768,6 +760,7 @@ section {
   box-sizing: content-box;
   text-align: center;
   min-height: 320px;
+  width: 100px !important;
 }
 
 .testimonials .testimonial-item .testimonial-img {
@@ -810,8 +803,8 @@ section {
 
 .testimonials .testimonial-item p {
   font-style: italic;
-  margin: 0 15px 15px 15px;
-  padding: 20px;
+  margin: 0 1px 15px 15px;
+  padding: 10px;
   background: #fff;
   position: relative;
   margin-bottom: 35px;
@@ -819,7 +812,7 @@ section {
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
 }
 
-.testimonials .testimonial-item p::after {
+/* .testimonials .testimonial-item p::after {
   content: "";
   width: 0;
   height: 0;
@@ -829,7 +822,7 @@ section {
   position: absolute;
   bottom: -20px;
   left: calc(50% - 20px);
-}
+} */
 
 .testimonials .swiper-pagination {
   margin-top: 20px;

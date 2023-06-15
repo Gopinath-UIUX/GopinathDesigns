@@ -1,6 +1,8 @@
-Thanks for downloading this template!
+Thanks for Seeing my Portfolio!
 
-Template Name: iPortfolio
-Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+ Name: Gopinath
+ URL: 
+ Author: Gopinath Subramani
+ WebTools: HTML | CSS |  JavaScript | Jquery 
+ Font: Google Fonts
+ Theme: Bootstrap
