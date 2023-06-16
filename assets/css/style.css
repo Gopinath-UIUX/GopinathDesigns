@@ -1086,7 +1086,7 @@ section {
   bottom: 0;
   width: 300px;
   z-index: 9999;
-  background: #b2b2b2;
+  background: #ffffff;
 }
 
 #footer .copyright {
@@ -1096,8 +1096,8 @@ section {
 #footer {
   padding-top: 5px;
   text-align: center;
-  font-size: 13px;
-  color: #6a6a6a;
+  font-size: 12px;
+  color: #afafaf;
 }
 
 @media (max-width: 1199px) {
@@ -1106,4 +1106,8 @@ section {
     width: auto;
     padding-right: 20px 15px;
   }
+}
+
+.cust-1 {
+  border-radius: 10px;
 }
