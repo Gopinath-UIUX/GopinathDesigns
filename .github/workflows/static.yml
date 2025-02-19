@@ -22,19 +22,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # Updated to latest
+        uses: actions/checkout@v4  # Updated to latest version
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4  # Updated to latest
+        uses: actions/configure-pages@v4  # Updated to latest version
 
       - name: Debug - List files
-        run: ls -la  # Check if static files exist
+        run: ls -la  # Verify files before uploading
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # Corrected version
+        uses: actions/upload-pages-artifact@v2  # Use correct artifact upload action
         with:
-          path: './'  # Update this to match where your static files are
+          path: './'  # Change if your static files are in a different folder (e.g., ./public)
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4  # Updated to latest
+        uses: actions/deploy-pages@v4  # Updated to latest version
