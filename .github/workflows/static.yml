@@ -37,9 +37,15 @@ jobs:
           mkdir -p ./public
           rsync -av --progress . ./public --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore'
 
-      - name: Remove symlinks
+      - name: Remove symlinks and hidden files
         run: |
           find ./public -type l -exec rm -f {} \;
+          find ./public -type f -name ".*" -exec rm -f {} \;
+
+      - name: Verify directory contents after cleanup
+        run: |
+          echo "Listing directory contents after cleanup..."
+          ls -lah ./public
 
       - name: Check total size
         run: |
