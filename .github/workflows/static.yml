@@ -31,10 +31,11 @@ jobs:
         run: ls -la  # Verify files before uploading
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # Use correct artifact upload action
+        uses: actions/upload-artifact@v4  # ✅ Updated version
         with:
-          path: './'  # Change if your static files are in a different folder (e.g., ./public)
+          name: github-pages
+          path: './'  # Change if static files are in a different folder
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4  # Updated to latest version
+        uses: actions/deploy-pages@v4  # Updated to latest
