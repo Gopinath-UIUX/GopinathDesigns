@@ -22,20 +22,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # Updated to latest version
+        uses: actions/checkout@v4  # ✅ Latest version
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4  # Updated to latest version
+        uses: actions/configure-pages@v4  # ✅ Latest version
 
-      - name: Debug - List files
-        run: ls -la  # Verify files before uploading
+      - name: Debug - List files before upload
+        run: |
+          echo "Checking repository structure..."
+          ls -lah
+
+      - name: Ensure correct directory for upload
+        run: |
+          mkdir -p ./public  # Create public directory if not present
+          rsync -av --progress . ./public --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore'
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4  # ✅ Updated version
+        uses: actions/upload-artifact@v4  # ✅ Latest version
         with:
           name: github-pages
-          path: './'  # Change if static files are in a different folder
+          path: './public'  # Upload only the necessary files
+          retention-days: 1  # Keep the artifact for 1 day to save storage
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4  # Updated to latest
+        uses: actions/deploy-pages@v4  # ✅ Latest version
