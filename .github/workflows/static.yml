@@ -45,7 +45,7 @@ jobs:
         run: |
           total_size=$(du -sm ./public | cut -f1)
           echo "Total size: $total_size MB"
-          if [ "$total_size" -gt 10000 ]; then
+          if [ "$total_size" -gt 10000]; then
             echo "The total size exceeds 10GB."
             exit 1
           fi
