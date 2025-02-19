@@ -11,8 +11,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages-${{ github.ref }}"
-  cancel-in-progress: true
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -27,19 +27,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Delete previous artifacts (if any)
+      - name: Debug - List files before upload
         run: |
-          gh run list --json databaseId --jq '.[] | .databaseId' | while read id; do
-            gh run delete $id --confirm
-          done
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo "Checking repository structure..."
+          ls -lah
 
       - name: Ensure correct directory for upload
         run: |
-          rm -rf ./public
           mkdir -p ./public
-          rsync -av --progress . ./public --exclude={'.git*','node_modules','.github','.gitignore','artifact-*'}
+          rsync -av --progress . ./public --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore'
 
       - name: Remove symlinks and hidden files
         run: |
@@ -50,11 +46,20 @@ jobs:
         run: |
           echo "Listing directory contents after cleanup..."
           ls -lah ./public
-          
+
+      # ✅ FIX: Delete old artifacts to prevent duplicate uploads
+      - name: Delete previous artifacts (if any)
+        run: |
+          gh api repos/${{ github.repository }}/actions/artifacts | jq -r '.artifacts[] | select(.name=="github-pages") | .id' | while read artifact_id; do
+            gh api -X DELETE repos/${{ github.repository }}/actions/artifacts/$artifact_id
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages-${{ github.run_id }}
+          name: github-pages
           path: './public'
           retention-days: 1
 
@@ -62,7 +67,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: github-pages-${{ github.run_id }}
+          timeout: 600000  # Adjust timeout as needed
 
       - name: Debug - List files after upload
         run: |
