@@ -35,20 +35,14 @@ jobs:
       - name: Ensure correct directory for upload
         run: |
           mkdir -p ./public  # Create public directory if not present
-          rsync -av --progress . ./public \
-            --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore' \
-            --exclude='*.zip' --exclude='*.tar.gz' --exclude='.DS_Store'
+          rsync -av --progress . ./public --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore'
 
-          # Remove symlinks (GitHub Pages does not support them)
-          find ./public -type l -delete
-
-      - name: Check total size before upload
-        run: du -sh ./public
-
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v2  # ✅ Correct upload action for GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4  # ✅ Latest version
         with:
-          path: './public'  # Upload only necessary files
+          name: github-pages
+          path: './public'  # Upload only the necessary files
+          retention-days: 1  # Keep the artifact for 1 day to save storage
 
       - name: Deploy to GitHub Pages
         id: deployment
