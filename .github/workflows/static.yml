@@ -48,6 +48,7 @@ jobs:
           if [ "$total_size" -gt 10000 ]; then
             echo "The total size exceeds 10GB."
             exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
