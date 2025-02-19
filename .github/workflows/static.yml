@@ -46,22 +46,7 @@ jobs:
         run: |
           echo "Listing directory contents after cleanup..."
           ls -lah ./public
-
-      - name: Check total size
-        run: |
-          total_size=$(du -sm ./public | cut -f1)
-          echo "Total size: $total_size MB"
-          if [ "$total_size" -gt 10000 ]; then
-            echo "The total size exceeds 10GB."
-            exit 1
-          fi
-
-      - name: Delete old artifacts
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh api -X DELETE /repos/${{ github.repository }}/actions/artifacts
-
+          
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
