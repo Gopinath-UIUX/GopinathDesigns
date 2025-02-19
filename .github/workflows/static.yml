@@ -56,6 +56,10 @@ jobs:
             exit 1
           fi
 
+      - name: Delete old artifacts
+        run: |
+          gh api -X DELETE /repos/${{ github.repository }}/actions/artifacts
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
