@@ -43,9 +43,9 @@ jobs:
 
       - name: Check total size
         run: |
-          total_size=$(du -sh ./public | cut -f1 | tr -d 'G')
-          echo "Total size: $total_size GB"
-          if [ "$total_size" -gt 10 ]; then
+          total_size=$(du -sh ./public | cut -f1 | tr -d 'M')
+          echo "Total size: $total_size MB"
+          if [ "$total_size" -gt 10000 ]; then
             echo "The total size exceeds 10GB."
             exit 1
 
