@@ -37,19 +37,17 @@ jobs:
           mkdir -p ./public
           rsync -av --progress . ./public --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore'
 
-      - name: Remove hard links and symlinks
+      - name: Remove symlinks
         run: |
           find ./public -type l -exec rm -f {} \;
-          find ./public -type h -exec rm -f {} \;
 
       - name: Check total size
         run: |
-          total_size=$(du -sh ./public | cut -f1)
-          echo "Total size: $total_size"
-          if [ "$total_size" -gt 10G ]; then
+          total_size=$(du -sh ./public | cut -f1 | tr -d 'G')
+          echo "Total size: $total_size GB"
+          if [ "$total_size" -gt 10 ]; then
             echo "The total size exceeds 10GB."
             exit 1
-          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
