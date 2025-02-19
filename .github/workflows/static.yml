@@ -57,6 +57,8 @@ jobs:
           fi
 
       - name: Delete old artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api -X DELETE /repos/${{ github.repository }}/actions/artifacts
 
