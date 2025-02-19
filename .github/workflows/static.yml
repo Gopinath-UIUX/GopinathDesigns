@@ -43,7 +43,7 @@ jobs:
 
       - name: Check total size
         run: |
-          total_size=$(du -sh ./public | cut -f1 | tr -d 'M')
+          total_size=$(du -sm ./public | cut -f1)
           echo "Total size: $total_size MB"
           if [ "$total_size" -gt 10000 ]; then
             echo "The total size exceeds 10GB."
@@ -61,7 +61,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          timeout: 900000  # Adjust timeout as needed
+          timeout: 600000  # Adjust timeout as needed
 
       - name: Debug - List files after upload
         run: |
