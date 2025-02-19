@@ -34,15 +34,21 @@ jobs:
 
       - name: Ensure correct directory for upload
         run: |
-          mkdir -p ./public  # Create public directory if not present
-          rsync -av --progress . ./public --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore'
+          mkdir -p ./public  # Ensure the public directory exists
+          rsync -av --progress . ./public --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore' --exclude='.gitmodules' --exclude='*.zip' --exclude='*.tar.gz'
+
+      - name: Verify artifact size & symlinks
+        run: |
+          echo "Checking total size of files..."
+          du -sh ./public
+          echo "Checking for symlinks..."
+          find ./public -type l -exec ls -lah {} \;
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4  # ✅ Latest version
+        uses: actions/upload-pages-artifact@v2  # ✅ Correct GitHub Pages artifact action
         with:
           name: github-pages
-          path: './public'  # Upload only the necessary files
-          retention-days: 1  # Keep the artifact for 1 day to save storage
+          path: './public'  # Upload only necessary files
 
       - name: Deploy to GitHub Pages
         id: deployment
