@@ -11,8 +11,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "pages-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -34,8 +34,9 @@ jobs:
 
       - name: Ensure correct directory for upload
         run: |
+          rm -rf ./public  # Ensure old directory is removed
           mkdir -p ./public
-          rsync -av --progress . ./public --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore'
+          rsync -av --progress . ./public --exclude={'.git*','node_modules','.github','.gitignore','artifact-*'}
 
       - name: Remove symlinks and hidden files
         run: |
@@ -53,6 +54,7 @@ jobs:
           name: github-pages
           path: './public'
           retention-days: 1
+          if-no-files-found: error  # Prevents empty uploads
 
       - name: Deploy to GitHub Pages
         id: deployment
