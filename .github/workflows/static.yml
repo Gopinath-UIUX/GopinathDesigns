@@ -47,19 +47,10 @@ jobs:
           echo "Listing directory contents after cleanup..."
           ls -lah ./public
 
-      # ✅ FIX: Delete old artifacts to prevent duplicate uploads
-      - name: Delete previous artifacts (if any)
-        run: |
-          gh api repos/${{ github.repository }}/actions/artifacts | jq -r '.artifacts[] | select(.name=="github-pages") | .id' | while read artifact_id; do
-            gh api -X DELETE repos/${{ github.repository }}/actions/artifacts/$artifact_id
-          done
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: github-pages
+          name: github-pages-${{ github.run_id }}
           path: './public'
           retention-days: 1
 
