@@ -1,24 +1,19 @@
-name: Deploy static content to Pages
+name: Deploy Static Site to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
-  workflow_dispatch:
+    branches:
+      - main  # Change this if your default branch is different
+
+  workflow_dispatch:  # Allows manual triggering
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -27,40 +22,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Debug - List files before upload
-        run: |
-          echo "Checking repository structure..."
-          ls -lah
-
-      - name: Ensure correct directory for upload
-        run: |
-          mkdir -p ./public
-          rsync -av --progress . ./public --exclude='.git*' --exclude='node_modules' --exclude='.github' --exclude='.gitignore'
-
-      - name: Remove symlinks and hidden files
-        run: |
-          find ./public -type l -exec rm -f {} \;
-          find ./public -type f -name ".*" -exec rm -f {} \;
-
-      - name: Verify directory contents after cleanup
-        run: |
-          echo "Listing directory contents after cleanup..."
-          ls -lah ./public
-          
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
-          path: './public'
-          retention-days: 1
+          path: .  # Change this if your static files are in a specific folder (e.g., `dist/` or `public/`)
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          timeout: 600000  # Adjust timeout as needed
-
-      - name: Debug - List files after upload
-        run: |
-          echo "Listing files after upload..."
-          ls -lah ./public
