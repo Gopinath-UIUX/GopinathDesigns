@@ -188,8 +188,11 @@ h6 {
 .nav-menu .active:focus,
 .nav-menu li:hover > a {
   text-decoration: none;
-  color: #149de4;
+  /* color: #149de4; */
+  color: #163b6b;
+  font-weight: 600;
 }
+
 
 .nav-menu a:hover i,
 .nav-menu .active i,
@@ -1089,7 +1092,8 @@ section {
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
-  color: #ffffff;
+  color: #272829;
+
 }
 
 .section-title1 h2::after {
@@ -1115,9 +1119,8 @@ section {
 
 .call-to-action:before {
   content: "";
-background-color: 
-/* color-mix(in srgb, rgb(23, 40, 59), transparent); */
-color-mix(in srgb, rgb(1 10 31), transparent);
+  background-color: 
+color-mix(in srgb, rgb(22 59 107), transparent);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -1215,11 +1218,13 @@ color-mix(in srgb, rgb(1 10 31), transparent);
 }
 
 .livesites a{
-  background: #e4f6ff;
-  padding: 5px 15px;
-  margin-bottom: 5px;
+  background: #dcf1ff;
+  padding: 4px 8px;
+  margin: 6px 4px;
   display: inline-block;
-  border-radius: 8px;
+  border-radius: 16px;
+  color: #163b6b;
+  border: 1px solid #c3e1f6;
 }
 
 
