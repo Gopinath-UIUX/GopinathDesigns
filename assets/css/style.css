@@ -1119,8 +1119,9 @@ section {
 
 .call-to-action:before {
   content: "";
-  background-color: 
-color-mix(in srgb, rgb(22 59 107), transparent);
+  background: #f5f8fd;
+  background: -webkit-linear-gradient(to right, #ff7a9a, #5452ff);
+  background: linear-gradient(to right, #ffc0d0, #c4c4ff);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -1132,34 +1133,36 @@ color-mix(in srgb, rgb(22 59 107), transparent);
 }
 
 .call-to-action h4 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2f2f2f;
 }
 
 .call-to-action p {
-  color: #ffffff;
+  color: #2f2f2f;
+  font-size: 14px;
 }
 
 .call-to-action .cta-btn {
-  background: #149ddd;
+  background: #4e4e4e;
   color: #fff;
-  font-family: #149ddd;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 14px;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 12px 40px;
+  padding: 6px 18px;
   border-radius: 50px;
   transition: 0.5s;
   margin: 10px;
 }
-
 .call-to-action .cta-btn:hover {
-  background: 
-  color-mix(in srgb, #91ddff 90%, #010000 15%);
+  background: color-mix(in srgb, #000000 90%, #010000 15%);
+  box-shadow: 2px 4px 6px #6d6d6d;
 }
 
+
+
+/* CS-3 */
 
 .call-to-action1 {
   padding: 48px 0;
@@ -1178,7 +1181,9 @@ color-mix(in srgb, rgb(22 59 107), transparent);
 }
 .call-to-action1:before {
   content: "";
-  background-color: /* color-mix(in srgb, rgb(23, 40, 59), transparent); */ color-mix(in srgb, rgb(2 50 45), #01402fa8);
+  background: #f5f8fd;
+  background: -webkit-linear-gradient(to right, #4d99fd, #56CCF2);
+  background: linear-gradient(to right, #b0c0ff, #f3f7ff);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -1189,33 +1194,88 @@ color-mix(in srgb, rgb(22 59 107), transparent);
 }
 
 .call-to-action1 h4 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  color: #2f2f2f;
 }
 
 .call-to-action1 p {
-  color: #ffffff;
+  color: #2f2f2f;
+  font-size: 14px;
 }
 
 .call-to-action1 .cta-btn {
-  background: #069375;
+  background: #4e4e4e;
   color: #fff;
   font-family: #149ddd;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 14px;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 12px 40px;
+  padding: 6px 18px;
   border-radius: 50px;
   transition: 0.5s;
   margin: 10px;
 }
 
 .call-to-action1 .cta-btn:hover {
-  background: 
-  color-mix(in srgb, #91ddff 90%, #010000 15%);
+  background: color-mix(in srgb, #000000 90%, #010000 15%);
+  box-shadow: 2px 4px 6px #6d6d6d;
 }
+
+/* CS-2 */
+
+.call-to-action2 {
+  padding: 48px 0;
+  position: relative;
+  clip-path: inset(0);
+}
+
+.call-to-action2:before {
+  content: "";
+  position: absolute;
+  background: #f5f8fd;
+  background: linear-gradient(90deg, rgb(129 198 225) 0%, rgb(185 255 214) 48%, rgb(255 246 165) 100%);
+  inset: 0;
+  z-index: 2;
+}
+.call-to-action2 .container {
+  position: relative;
+  z-index: 3;
+}
+
+.call-to-action2 h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2f2f2f;
+}
+
+.call-to-action2 p {
+  color: #2f2f2f;
+  font-size: 14px;
+}
+
+.call-to-action2 .cta-btn {
+  background: #4e4e4e;
+  color: #fff;
+  font-family: #149ddd;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 10px;
+}
+
+.call-to-action2 .cta-btn:hover {
+  background: color-mix(in srgb, #000000 90%, #010000 15%);
+  box-shadow: 2px 4px 6px #6d6d6d;
+}
+
+
+
 
 .livesites a{
   background: #dcf1ff;
